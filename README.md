@@ -1,1 +1,3 @@
-Maximilian Prietzel, Valentin Tietze
+# Car Racing Game
+
+This game will be fun!
