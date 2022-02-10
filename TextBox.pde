@@ -1,30 +1,18 @@
-class Button {
+class TextBox {
   // bg = background, st = stroke, hv = hover
   private int x, y, w, h, stWeight, rounding;
-  private String text;
+  private String text, spaceHolder;
   private Boolean selected;
   private color bgColor, stColor, hvColor, textColor;
 
-  Button(int x, int y, int w, int h) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.stWeight = 5;
-    this.rounding = 10;
-    this.bgColor = 255;
-    this.stColor = 0;
-    this.hvColor = 200;
-    this.selected = false;
-  }
-
-  Button(int x, int y, int w, int h, String text, color textColor) {
+  TextBox(int x, int y, int w, int h, String text, color textColor, String spaceHolder) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.text = text;
     this.textColor = textColor;
+    this.spaceHolder = spaceHolder;
     this.stWeight = 5;
     this.rounding = 10;
     this.bgColor = 255;
@@ -45,10 +33,13 @@ class Button {
     }
     rect(this.x, this.y, this.w, this.h, this.rounding);
 
-    if(this.text != null) {
-      textSize(this.h/2);
-      fill(this.textColor);
-      textAlign(CENTER, CENTER);
+    textSize(this.h/2);
+    fill(this.textColor);
+    textAlign(CENTER, CENTER);
+    if(this.text == "") {
+      text(this.spaceHolder, this.x+this.w/2, this.y+this.h/2);
+    }
+    else {
       text(this.text, this.x+this.w/2, this.y+this.h/2);
     }
   }

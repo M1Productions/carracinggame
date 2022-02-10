@@ -1,5 +1,5 @@
 class SinglePlayerMenue {
-  private Button playBt, joinGameBt, backBt;
+  private Button playBt, backBt;
 
   SinglePlayerMenue() {
     this.playBt = new Button(width*2/3 - width/12, height*11/13, width/6, height/13, "PLAY", 0);

@@ -55,7 +55,7 @@ class MainMenue{
     }
     else if(this.mapEditorBt.mouseOver() && this.mapEditorBt.isSelected()) {
       this.mapEditorBt.unselect();
-      // todo
+      changeMode(4);
     }
     else if(this.settingsBt.mouseOver() && this.settingsBt.isSelected()) {
       this.settingsBt.unselect();
