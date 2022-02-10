@@ -43,7 +43,7 @@ class MainMenue{
   void mouseReleased() {
     if(this.singlePlayerBt.mouseOver() && this.singlePlayerBt.isSelected()) {
       this.singlePlayerBt.unselect();
-      // todo
+      changeMode(2);
     }
     else if(this.multiPlayerBt.mouseOver() && this.multiPlayerBt.isSelected()) {
       this.multiPlayerBt.unselect();
