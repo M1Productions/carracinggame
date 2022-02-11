@@ -53,19 +53,23 @@ class Button {
     }
   }
 
-  Boolean mouseOver() { //if the mouse is over this element
+  public Boolean mouseOver() { //if the mouse is over this element
     return ((this.x<=mouseX&&this.x+this.w>=mouseX)&&(this.y<=mouseY&&this.y+this.h>=mouseY));
   }
 
-  void select() {
+  public void select() {
     this.selected = true;
   }
 
-  void unselect() {
+  public void unselect() {
     this.selected = false;
   }
 
-  Boolean isSelected() {
+  public Boolean isSelected() {
     return this.selected;
+  }
+
+  public void changeText(String text) {
+    this.text = text;
   }
 }

@@ -10,7 +10,7 @@ class MainMenue{
     this.aboutBt          = new Button(width/3, height*11/13, width/3, height/13, "ABOUT", 0);
   }
 
-  void draw() {
+  public void draw() {
     this.singlePlayerBt.draw();
     this.multiPlayerBt.draw();
     this.garageBt.draw();
@@ -19,7 +19,7 @@ class MainMenue{
     this.aboutBt.draw();
   }
 
-  void mousePressed() {
+  public void mousePressed() {
     if(this.singlePlayerBt.mouseOver()) {
       this.singlePlayerBt.select();
     }
@@ -40,18 +40,18 @@ class MainMenue{
     }
   }
 
-  void mouseReleased() {
+  public void mouseReleased() {
     if(this.singlePlayerBt.mouseOver() && this.singlePlayerBt.isSelected()) {
       this.singlePlayerBt.unselect();
-      changeMode(2);
+      changeMode(1);
     }
     else if(this.multiPlayerBt.mouseOver() && this.multiPlayerBt.isSelected()) {
       this.multiPlayerBt.unselect();
-      changeMode(1);
+      changeMode(2);
     }
     else if(this.garageBt.mouseOver() && this.garageBt.isSelected()) {
       this.garageBt.unselect();
-      // todo
+      // todo : build garage
     }
     else if(this.mapEditorBt.mouseOver() && this.mapEditorBt.isSelected()) {
       this.mapEditorBt.unselect();
@@ -59,11 +59,11 @@ class MainMenue{
     }
     else if(this.settingsBt.mouseOver() && this.settingsBt.isSelected()) {
       this.settingsBt.unselect();
-      // todo
+      // todo : build settings
     }
     else if(this.aboutBt.mouseOver() && this.aboutBt.isSelected()) {
       this.aboutBt.unselect();
-      // todo
+      // fileManager.openTrack("testingalways");
     }
     else {
       this.singlePlayerBt.unselect();

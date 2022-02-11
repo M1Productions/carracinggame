@@ -18,7 +18,12 @@ class MapEditor {
     this.mirrored = false;
   }
 
-  void draw() {
+  public void update() {
+    this.newMap = new Canvas(0, 0, width, height);
+    saveMapScreen.update();
+  }
+
+  public void draw() {
     this.newMap.draw();
 
     if(!this.newMap.isSave()) {
@@ -33,7 +38,7 @@ class MapEditor {
     }
   }
 
-  void mousePressed() {
+  public void mousePressed() {
     if (this.saveMapBt.mouseOver()) {
       this.saveMapBt.select();
     }
@@ -64,13 +69,14 @@ class MapEditor {
     }
   }
 
-  void mouseReleased() {
+  public void mouseReleased() {
     if (this.saveMapBt.mouseOver() && this.saveMapBt.isSelected()) {
       this.saveMapBt.unselect();
       changeMode(41);
     }
     else if (this.backBt.mouseOver() && this.backBt.isSelected()) {
       this.backBt.unselect();
+      mapEditor.newMap.save("autosave");
       changeMode(0);
     }
     else if (this.bridgesBt.mouseOver() && this.bridgesBt.isSelected()) {
@@ -98,13 +104,13 @@ class MapEditor {
     this.newMap.stopPainting();
   }
 
-  void mouseDragged() {
+  public void mouseDragged() {
     if(this.newMap.isPainting()) {
       this.newMap.paint();
     }
   }
 
-  void rearrangeButtons() {
+  public void rearrangeButtons() {
     if(this.mirrored) {
       this.bridgesBt                = new Button(width/20, height/13, width/20, height/13, "BRIDGE", 0);
       this.streetsBt                = new Button(width/20, height*3/13, width/20, height/13, "STREET", 0);

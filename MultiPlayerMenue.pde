@@ -7,13 +7,13 @@ class MultiPlayerMenue {
     this.backBt     = new Button(width/3, height*11/13, width/3, height/13, "BACK", 0);
   }
 
-  void draw() {
+  public void draw() {
     this.hostGameBt.draw();
     this.joinGameBt.draw();
     this.backBt.draw();
   }
 
-  void mousePressed() {
+  public void mousePressed() {
     if (this.hostGameBt.mouseOver()) {
       this.hostGameBt.select();
     }
@@ -25,14 +25,14 @@ class MultiPlayerMenue {
     }
   }
 
-  void mouseReleased() {
+  public void mouseReleased() {
     if (this.hostGameBt.mouseOver() && this.hostGameBt.isSelected()) {
       this.hostGameBt.unselect();
-      // todo
+      // todo : host game
     }
     else if (this.joinGameBt.mouseOver() && this.joinGameBt.isSelected()) {
       this.joinGameBt.unselect();
-      // todo
+      // todo : host game
     }
     else if (this.backBt.mouseOver() && this.backBt.isSelected()) {
       this.backBt.unselect();

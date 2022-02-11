@@ -3,6 +3,7 @@ class Canvas {
   private int x, y, w, h, mapIndex;
   private int[][] map;
   private Boolean painting, save;
+  private Track creatingTrack;
 
   Canvas(int x, int y, int w, int h) {
     this.x = x;
@@ -15,7 +16,7 @@ class Canvas {
     this.save = false;
   }
 
-  void draw() {
+  public void draw() {
     if(this.bg == null) {
       strokeWeight(0);
       fill(0,255,0);
@@ -37,7 +38,7 @@ class Canvas {
     }
   }
 
-  void paint() {
+  public void paint() {
     if(mapIndex<map.length) {
       this.map[this.mapIndex] = new int[3];
       this.map[this.mapIndex][0] = mouseX;
@@ -47,32 +48,40 @@ class Canvas {
     }
   }
 
-  void autosave() {
+  public void autosave() {
     this.bg = get();
     this.map = new int[1028][];
     this.mapIndex = 0;
     this.save = false;
+
+    if(this.creatingTrack == null) {
+      this.creatingTrack = new Track("autosave", this.bg, this.bg);
+    }
+    else {
+      this.creatingTrack.setTrack(this.bg);
+      this.creatingTrack.setDesign(this.bg);
+    }
   }
 
-  void painting() {
+  public void painting() {
     this.painting = true;
   }
 
-  void stopPainting() {
+  public void stopPainting() {
     this.painting = false;
     this.save = true;
-    // todo : save image
   }
 
-  Boolean isPainting() {
+  public Boolean isPainting() {
     return this.painting;
   }
 
-  Boolean isSave() {
+  public Boolean isSave() {
     return this.save;
   }
 
-  void save() {
-    this.bg.save("data/autosave.png");
+  public void save(String name) {
+    this.bg.save("data/"+name+".png");
+    fileManager.saveTrack(new Track(name, this.bg, this.bg));
   }
 }
