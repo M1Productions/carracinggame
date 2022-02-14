@@ -2,7 +2,7 @@ class TextBox {
   // bg = background, st = stroke, hv = hover
   private int x, y, w, h, stWeight, rounding, maxLetters;
   private String text, spaceHolder;
-  private Boolean selected, changable;
+  private Boolean selected;
   private color bgColor, stColor, hvColor, textColor;
 
   TextBox(int x, int y, int w, int h, String text, color textColor, String spaceHolder, int maxLetters) {
@@ -20,25 +20,6 @@ class TextBox {
     this.stColor = 0;
     this.hvColor = 200;
     this.selected = false;
-    this.changable = true;
-  }
-
-  TextBox(int x, int y, int w, int h, String text, color textColor, String spaceHolder, Boolean changable, int maxLetters) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.text = text;
-    this.textColor = textColor;
-    this.spaceHolder = spaceHolder;
-    this.maxLetters = maxLetters;
-    this.stWeight = 5;
-    this.rounding = 10;
-    this.bgColor = 255;
-    this.stColor = 0;
-    this.hvColor = 200;
-    this.selected = false;
-    this.changable = changable;
   }
 
   public void draw() {

@@ -78,7 +78,7 @@ class SinglePlayerMenue {
   public void mouseReleased() {
     if (this.playBt.mouseOver() && this.playBt.isSelected()) {
       this.playBt.unselect();
-      // todo : start game
+      changeMode(11);
     }
     else if (this.backBt.mouseOver() && this.backBt.isSelected()) {
       this.backBt.unselect();

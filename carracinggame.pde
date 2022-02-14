@@ -6,10 +6,12 @@ public SinglePlayerMenue singlePlayerMenue;
 public MapEditor mapEditor;
 public SaveMapScreen saveMapScreen;
 public FileManager fileManager;
+public Game game;
+public PVector xAxis;
 
 // main setup function
 public void setup() {
-  frameRate(30);
+  frameRate(60);
   size(1440, 810);
   surface.setTitle("Car Racing Game");
   // surface.setIcon(loadImage("Image.png"));
@@ -21,6 +23,8 @@ public void setup() {
   saveMapScreen     = new SaveMapScreen();
   fileManager       = new FileManager();
 
+  xAxis = new PVector(1, 0);
+
   mode = 0;
   error = 0;
   errorText = "";
@@ -28,8 +32,9 @@ public void setup() {
 
 public void changeMode(int newMode) {
   switch(newMode) {
-    case 1: singlePlayerMenue.update();       break; // reloading the content of the maps/data folder
-    case 4: if(mode!=41){mapEditor.update();} break; // refreshing the canvas and the name of the new map
+    case 1:  singlePlayerMenue.update();       break; // reloading the content of the maps/data folder
+    case 11: game = new Game();                break; // creating a new game
+    case 4:  if(mode!=41){mapEditor.update();} break; // refreshing the canvas and the name of the new map
   }
   mode = newMode;
 }
@@ -43,6 +48,7 @@ public void draw() {
     case 0:  mainMenue.draw();         break; // main menu
     case 2:  multiPlayerMenue.draw();  break; // when u pressed the multiplayer button in main menue
     case 1:  singlePlayerMenue.draw(); break; // when u pressed the singleplayer button in main menue
+    case 11: game.draw();              break; // playing the game
     case 4:  mapEditor.draw();         break; // map editor
     case 41: saveMapScreen.draw();     break; // save a self created map
   }
@@ -62,6 +68,7 @@ public void mousePressed() {
     case 0:  mainMenue.mousePressed();         break; // main menu
     case 2:  multiPlayerMenue.mousePressed();  break; // when u pressed the multiplayer button in main menue
     case 1:  singlePlayerMenue.mousePressed(); break; // when u pressed the singleplayer button in main menue
+    case 11: game.mousePressed();              break; // playing the game
     case 4:  mapEditor.mousePressed();         break; // map editor
     case 41: saveMapScreen.mousePressed();     break; // save a self created map
   }
@@ -72,6 +79,7 @@ public void mouseReleased() {
     case 0:  mainMenue.mouseReleased();         break; // main menu
     case 2:  multiPlayerMenue.mouseReleased();  break; // when u pressed the multiplayer button in main menue
     case 1:  singlePlayerMenue.mouseReleased(); break; // when u pressed the singleplayer button in main menue
+    case 11: game.mouseReleased();              break;  // playing the game
     case 4:  mapEditor.mouseReleased();         break; // map editor
     case 41: saveMapScreen.mouseReleased();     break; // save a self created map
   }
@@ -85,6 +93,7 @@ public void mouseDragged() {
 
 public void keyPressed() {
   switch(mode) {
+    case 11: game.keyPressed();          break; // driving
     case 41: saveMapScreen.keyPressed(); break; // save a self created map
   }
 }
