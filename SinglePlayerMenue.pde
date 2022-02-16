@@ -31,6 +31,10 @@ class SinglePlayerMenue {
     this.currentMapBt.changeText(this.maps.get(this.indexMap).getName());
   }
 
+  public PImage getPreviewImg() {
+    return this.previewImg;
+  }
+
   public void listTracks() {
     File folder = new File(sketchPath("./data"));
     File[] files = folder.listFiles();

@@ -13,6 +13,8 @@ class MapEditor {
     this.saveMapBt                = new Button(width*11/24, height*11/13, width/12, height/13, "SAVE", 0);
     this.changeButtonsPositionsBt = new Button(width*14/24, height*11/13, width/12, height/13, "->", 0);
 
+    this.streetsBt.select();
+
     this.newMap                   = new Canvas(0, 0, width, height);
 
     this.mirrored = false;
@@ -64,8 +66,17 @@ class MapEditor {
       this.changeButtonsPositionsBt.select();
     }
     else {
+      this.clickMap(); // decide which tool to use
+    }
+  }
+
+  private void clickMap() {
+    if(this.streetsBt.isSelected()) {
       this.newMap.painting();
       this.newMap.paint();
+    }
+    else if(this.checkpointBt.isSelected()) {
+      this.newMap.addCheckpoint();
     }
   }
 
@@ -80,19 +91,24 @@ class MapEditor {
       changeMode(0);
     }
     else if (this.bridgesBt.mouseOver() && this.bridgesBt.isSelected()) {
-      // nothing
+      this.unselectTools();
+      this.bridgesBt.select();
     }
     else if (this.streetsBt.mouseOver() && this.streetsBt.isSelected()) {
-      // nothing
+      this.unselectTools();
+      this.streetsBt.select();
     }
     else if (this.eraserBt.mouseOver() && this.eraserBt.isSelected()) {
-      // nothing
+      this.unselectTools();
+      this.eraserBt.select();
     }
     else if (this.checkpointBt.mouseOver() && this.checkpointBt.isSelected()) {
-      // nothing
+      this.unselectTools();
+      this.checkpointBt.select();
     }
     else if (this.finishLineBt.mouseOver() && this.finishLineBt.isSelected()) {
-      // nothing
+      this.unselectTools();
+      this.finishLineBt.select();
     }
     else if (this.changeButtonsPositionsBt.mouseOver() && this.changeButtonsPositionsBt.isSelected()) {
       this.rearrangeButtons();
@@ -102,6 +118,14 @@ class MapEditor {
       this.backBt.unselect();
     }
     this.newMap.stopPainting();
+  }
+
+  private void unselectTools() {
+    this.bridgesBt.unselect();
+    this.streetsBt.unselect();
+    this.eraserBt.unselect();
+    this.checkpointBt.unselect();
+    this.finishLineBt.unselect();
   }
 
   public void mouseDragged() {

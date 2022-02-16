@@ -7,7 +7,7 @@ class FileManager {
     this.readContent = new String[3];
   }
 
-  public void saveTrack(Track trackToSave) {
+  public void saveTrack(Track trackToSave) { // writing everything into one file //todo : work with .zip
     trackToSave.getDesign().save(sketchPath("./tracks/temp/design.png"));
     trackToSave.getTrack().save(sketchPath("./tracks/temp/track.png"));
 
@@ -19,7 +19,7 @@ class FileManager {
     this.createFile(trackToSave.getName());
   }
 
-  public void openTrack(String nameToOpen) {
+  public void openTrack(String nameToOpen) { // throw away!!
     BufferedReader reader = createReader(sketchPath("./tracks/"+nameToOpen+".track")); // open a file
 
     String line = null;
@@ -41,7 +41,7 @@ class FileManager {
     this.savePicture("track", this.readContent[0]);
   }
 
-  private void readFile(String fileName) {
+  private void readFile(String fileName) { // read the png files + write the ---- spacer
     BufferedReader reader = createReader(sketchPath("./tracks/temp/"+fileName)); // open a file
 
     String line = null;
@@ -57,7 +57,7 @@ class FileManager {
     content += "--------------------\n";
   }
 
-  private void createFile(String name) {
+  private void createFile(String name) { // writing text into a .track file
     PrintWriter toSave;
     toSave = createWriter(sketchPath("./tracks/"+name+".track"));
     toSave.println(content);
@@ -65,11 +65,16 @@ class FileManager {
     toSave.close(); // finishes the file
   }
 
-  private void savePicture(String name, String writeIn) {
+  private void savePicture(String name, String writeIn) { // create a png out of only text // todo : throw away because it does not work this way
     PrintWriter toSave;
     toSave = createWriter(sketchPath("./tracks/temp/"+name+".png"));
     toSave.println(writeIn);
     toSave.flush(); // writes the remaining data to the file
     toSave.close(); // finishes the file
+  }
+
+  public Track loadDataForTrack() { // create a Track object out of the content of a file
+    Track track = new Track();
+    return track;
   }
 }

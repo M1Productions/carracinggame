@@ -4,6 +4,7 @@ class Canvas {
   private int[][] map;
   private Boolean painting, save;
   private Track creatingTrack;
+  private ArrayList <Checkpoint> checkpoints;
 
   Canvas(int x, int y, int w, int h) {
     this.x = x;
@@ -14,10 +15,11 @@ class Canvas {
     this.map = new int[1028][];
     this.mapIndex = 0;
     this.save = false;
+    this.checkpoints = new ArrayList <Checkpoint>();
   }
 
   public void draw() {
-    if(this.bg == null) {
+    if(this.bg == null) { // draw background
       strokeWeight(0);
       fill(0,255,0);
       rect(this.x, this.y, this.w, this.h);
@@ -26,15 +28,23 @@ class Canvas {
       image(this.bg, this.x, this.y);
     }
 
-    if(this.map[0] != null) {
+    if(this.map[0] != null) { // draw new streets
       for(int i=0; i<this.mapIndex-1; i++) {
         strokeWeight(this.map[i][2]);
         line(this.map[i][0], this.map[i][1], this.map[i+1][0], this.map[i+1][1]);
       }
     }
 
-    if(this.save) {
+    // always last
+    if(this.save) { // autosave streets when tool is lifted
       this.autosave();
+    }
+    else {
+      if(this.checkpoints.size() != 0) { // draw checkpoints
+        for(Checkpoint c : this.checkpoints) {
+          c.draw();
+        }
+      }
     }
   }
 
@@ -83,5 +93,9 @@ class Canvas {
   public void save(String name) {
     this.bg.save("data/"+name+".png");
     fileManager.saveTrack(new Track(name, this.bg, this.bg));
+  }
+
+  public void addCheckpoint() {
+    this.checkpoints.add(new Checkpoint(mouseX, mouseY, width/20, height/50, 0));
   }
 }

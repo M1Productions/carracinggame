@@ -11,7 +11,7 @@ public PVector xAxis;
 
 // main setup function
 public void setup() {
-  frameRate(60);
+  frameRate(30);
   size(1440, 810);
   surface.setTitle("Car Racing Game");
   // surface.setIcon(loadImage("Image.png"));
@@ -95,6 +95,12 @@ public void keyPressed() {
   switch(mode) {
     case 11: game.keyPressed();          break; // driving
     case 41: saveMapScreen.keyPressed(); break; // save a self created map
+  }
+}
+
+public void keyReleased() {
+  switch(mode) {
+    case 11: game.keyReleased();
   }
 }
 
